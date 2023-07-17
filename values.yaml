@@ -4,6 +4,20 @@ deployment:
   replicaCount: 3
   image: garstiops/garstiges-secret-repo:java-mysql-app-1.0
   imagePullPolicy: IfNotPresent
+  imagePullSecretName: regcred
+  containerEnv:
+    - name: DB_USER
+      configMapKey: dbUser
+      configMapName: my-java-app-secret
+    - name: DB_PWD
+      configMapKey: dbPwd
+      configMapName: my-java-app-secret
+    - name: DB_SERVER
+      configMapKey: dbServer
+      configMapName: my-java-app-secret
+    - name: DB_NAME
+      configMapKey: dbName
+      configMapName: my-java-app-secret
 
 service:
   name: my-java-service
@@ -19,3 +33,9 @@ secret:
   name: my-java-app-secret
   dbUser: cm9vdAo=
   dbPwd: cm9vdAo=
+
+ingress:
+  name: my-java-app-ingress
+  host: awesomme-app.de
+  path: /
+  pathType: Prefix
