@@ -1,8 +1,21 @@
 deployment:
   name: my-java-app
   port: 8080
+  replicaCount: 3
+  image: garstiops/garstiges-secret-repo:java-mysql-app-1.0
+  imagePullPolicy: IfNotPresent
 
 service:
   name: my-java-service
   port: 8080
   type: ClusterIP
+
+configmap:
+  name: my-java-app-configmap
+  dbServer: mysql-primary
+  db: db
+
+secret:
+  name: my-java-app-secret
+  dbUser: cm9vdAo=
+  dbPwd: cm9vdAo=
