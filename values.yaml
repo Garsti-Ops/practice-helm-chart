@@ -1,0 +1,8 @@
+deployment:
+  name: my-java-app
+  port: 8080
+
+service:
+  name: my-java-service
+  port: 8080
+  type: ClusterIP
